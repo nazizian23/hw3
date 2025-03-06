@@ -84,6 +84,19 @@ Node* llfilter(Node* head, Comp pred)
     // Provide your implementation below
     //*********************************************
 
+    if(head==NULL){//Base case
+      return NULL;
+    }
+    Node* filt_tail=llfilter(head->next,pred);//Filters the rest of the list (tail) first and stores the head of the remaining list
+
+
+    if(pred(head->val)){//Checks if the current nodes val should be filtered out
+
+      delete head;//deletes the current node
+      return filt_tail;
+    }
+    head->next=filt_tail;//keep the current node and link its next pointer to the filtered tail
+    return head;
 
 }
 
